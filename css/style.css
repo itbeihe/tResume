@@ -4,12 +4,14 @@ table{border-collapse:collapse;}
 strong,b{font-weight:normal;}i,em,cite{font-style:normal;}
 ul{list-style:none;}
 
-body{font:1em/1.6em "微软雅黑";}
+body{font:1em/1.6em "微软雅黑";background-color:#fafafa;}
 
-a{text-decoration:none;}
-a:visited{text-decoration:none;}
-a:hover{text-decoration:underline;}
+a:link{text-decoration:none;color:#06c;}
+a:visited{text-decoration:none;color:#06c;}
+a:hover{text-decoration:underline;color:#f60;}
 a:active{text-decoration:none;}
+
+
 
 /** 清除浮动 **/
 .clear{clear:both;}
@@ -17,14 +19,38 @@ a:active{text-decoration:none;}
 .clearfix {*zoom:1;}
 
 /** **/
-.main-box{margin:0 10%;width:65%;padding-left:15%}
-.section-box{margin:0 auto;text-align:center;}
+.main-box{margin:0 10%;width:70%;padding-left:10%}
 
-
-.slide-box{position:fixed;left:10%;top:0;bottom:0;border-right:3px solid #999;width:14%;text-align:right;padding:5% 0;}
+.slide-box{position:fixed;left:5%;top:0;bottom:0;border-right:3px solid #999;width:14%;text-align:right;padding:5% 0;}
 
 /** main-nav **/
 #main-nav{position:relative;}
 .main-nav-list{padding-right:5%;}
 .main-nav-list li{padding-right:20px;}
-.nav-pointer{position:absolute;width:8px;height:8px;background:#fff;transform: rotate(45deg);right:-7px;top:7px;border-bottom:3px solid #999;border-left:3px solid #999;}
+.nav-pointer{position:absolute;width:8px;height:8px;background:#fafafa;-webkit-transform: rotate(45deg);transform: rotate(45deg);right:-7px;top:7px;border-bottom:3px solid #999;border-left:3px solid #999;}
+/** section-box **/
+.section-box{margin:10px auto 0;border:1px solid #ccc;padding:10px;min-width:650px;background-color:#fff;}
+
+
+/** person info section **/
+.person-info-box{float:left;}
+/** my-info-row **/
+.my-info-row{overflow:hidden;*zoom:1;}
+.my-info-row dt{float:left;padding-right:5px;}
+.my-info-row dd{float:left;}
+
+/**weibo-box **/
+.weibo-box{float:right;padding:10px 0;}
+
+
+
+/** **/
+.special-tech-list{list-style:square inside;padding:5px 0;}
+
+
+/** work-item **/
+.work-item{padding:10px 0;border-bottom:1px dashed #ccc;}
+.work-item dt{padding:3px 0;}
+.work-item dd{}
+
+.no-border{border-bottom:none;}
