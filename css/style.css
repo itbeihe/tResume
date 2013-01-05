@@ -2,9 +2,9 @@ body,dl,dd,p,blockquote,ul,ol,pre,form,h1,h2,h3,h4,h5,h6{margin:0;}
 ul,ol,th,td{padding:0;}
 table{border-collapse:collapse;}
 strong,b{font-weight:normal;}i,em,cite{font-style:normal;}
-ul{list-style:none;}
+ul{list-style:none;color:#333;}
 
-body{font:1em/1.6em "微软雅黑";background-color:#fafafa;}
+body{font:1em/1.6em "微软雅黑";background-color:#fafafa;color:#000;}
 
 a:link{text-decoration:none;color:#06c;}
 a:visited{text-decoration:none;color:#06c;}
@@ -21,7 +21,7 @@ a:active{text-decoration:none;}
 /** **/
 .main-box{margin:0 10%;width:70%;padding-left:10%}
 
-.slide-box{position:fixed;left:5%;top:0;bottom:0;border-right:3px solid #999;width:14%;text-align:right;padding:5% 0;}
+.slide-box{position:fixed;left:5%;top:0;bottom:0;border-right:3px solid #999;width:14%;text-align:right;padding:5% 0;min-weight:120px;background-color:#fafafa;}
 
 /** main-nav **/
 #main-nav{position:relative;}
@@ -29,6 +29,7 @@ a:active{text-decoration:none;}
 .main-nav-list li{padding-right:20px;}
 .nav-pointer{position:absolute;width:8px;height:8px;background:#fafafa;-webkit-transform: rotate(45deg);transform: rotate(45deg);right:-7px;top:7px;border-bottom:3px solid #999;border-left:3px solid #999;}
 /** section-box **/
+.section-title{padding-bottom:10px;}
 .section-box{margin:10px auto 0;border:1px solid #ccc;padding:10px;min-width:650px;background-color:#fff;}
 
 
@@ -40,7 +41,7 @@ a:active{text-decoration:none;}
 .my-info-row dd{float:left;}
 
 /**weibo-box **/
-.weibo-box{float:right;padding:10px 0;}
+.weibo-box{float:right;padding:20px 15px 0 0;}
 
 
 
@@ -51,6 +52,16 @@ a:active{text-decoration:none;}
 /** work-item **/
 .work-item{padding:10px 0;border-bottom:1px dashed #ccc;}
 .work-item dt{padding:3px 0;}
+.work-time{min-width:200px;display:inline-block;}
+.work-company{min-width:300px;margin-left:50px;display:inline-block;}
+.work-job{display:inline-block;margin-left:50px;}
 .work-item dd{}
 
 .no-border{border-bottom:none;}
+
+
+/**  **/
+.normal-list{list-style:square inside;padding:5px 0 5px 5px;;}
+
+
+.project-company{font-weight:bold;}
