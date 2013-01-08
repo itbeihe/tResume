@@ -18,6 +18,12 @@ a:active{text-decoration:none;}
 .clearfix:after { content: ""; display: block;font-size:0;line-height:0; height: 0; clear: both; visibility: hidden;}
 .clearfix {*zoom:1;}
 
+/** 视差背景 **/
+#parallax-bg1{position:absolute;z-index:-1;}
+#parallax-bg2{position:absolute;z-index:-2;}
+#parallax-bg3{position:absolute;z-index:-3;}
+
+
 /** **/
 .main-box{margin:0 10%;width:70%;padding-left:10%}
 
