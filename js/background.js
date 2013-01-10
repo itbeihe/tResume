@@ -96,7 +96,7 @@
             
             //console.log(self.canvasObj.width);
             //console.log(self.canvasObj.height);
-            //try{
+            try{
                 self.context = self.canvasObj.getContext('2d');
                 self.context.save();
                 //console.log(self.context);
@@ -106,9 +106,9 @@
                 //    self.fillKeyObjs(-1);
                 //},50)
                 
-            //}catch(e){
-            //    return;
-            //}
+            }catch(e){
+                return false;
+            }
         },
         buildKeyObjs : function(){
             var self = this;
