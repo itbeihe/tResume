@@ -6,6 +6,25 @@
 
 (function($) {
     var fontDiv = null;
+    var xarr = [];
+    var yarr = [];
+    var arrObj = {};
+    var getRandomFromArr = function(arr){
+        var index = parseInt(Math.random()*arr.length);
+        return arr[index];
+    }
+    
+    var buildArr = function(max,span){
+        var arr = [];
+        var currentNum = 2*span;
+        do{
+            arr.push(currentNum);
+            currentNum += span;
+        }while(currentNum < (max-span));
+        return arr;
+    };
+    
+    
     
     var getWidthHeight = function(keyObj){
         if(!fontDiv){
@@ -25,13 +44,25 @@
         }
     };
     
+    var getRandomPointFromArr = function(arr,maxValue,span){
+        if(arr.length == 0){
+            var barr = buildArr(maxValue,span);
+            for(var i = 0,len=barr.length;i<len;i++){
+                arr[i] = barr[i];
+            }
+        }
+        return getRandomFromArr(arr);
+    }
     
     var getCoord = function(keyObj,maxWidht,maxHeight){
         var WH = getWidthHeight(keyObj);
         var width = WH.width;
         var height = WH.height;
-        var x = parseInt(Math.random()*(maxWidht-2*width)+width);
-        var y = parseInt(Math.random()*(maxHeight-2*height)+height);
+        //var x = parseInt(Math.random()*(maxWidht-2*width)+width);
+        //var y = parseInt(Math.random()*(maxHeight-2*height)+height);
+        
+        var x = getRandomPointFromArr(xarr,maxWidht,width);
+        var y = getRandomPointFromArr(yarr,maxHeight,height);
         return {
             x:x,
             y:y,
@@ -39,6 +70,7 @@
             height:WH.height
         }
     }
+    
     
     $.keywordbg = function(customConfig) {
         this.config = {
@@ -78,9 +110,6 @@
             //    return;
             //}
         },
-        getBetterCoord:function(){
-        
-        },
         buildKeyObjs : function(){
             var self = this;
             var config = self.config;
@@ -111,12 +140,32 @@
                     }
                     keyObj.degree = Math.random()*6;
                     
-                    keyObj.position = getCoord(keyObj,width,height);
+                    
+                    var position = getCoord(keyObj,width,height);
+                    
+                    do{
+                        console.log('11');
+                        position = getCoord(keyObj,width,height);
+                    }while(!self.checkPosition(position));
+                    
+                    keyObj.position = position;
                     keyObjs.push(keyObj);
                     
                 }
             }
             return keyObjs;
+        },
+        checkPosition:function(position){
+            var self = this;
+            for(var i = 0,len=self.keyObjs.length;i<len;i++){
+                //console.log(self.keyObjs[i]['x'] == position['x']);
+                //console.log(self.keyObjs[i]['x'] == position['y']);
+                //console.log(self.keyObjs[i]['x'] == position['x'] && self.keyObjs[i]['y'] == position['y']);
+                if(self.keyObjs[i]['x'] == position['x'] && self.keyObjs[i]['y'] == position['y']){
+                    return false;
+                }
+            }
+            return true;
         },
         fillKeyObjs:function(seq){
             //console.log('++');

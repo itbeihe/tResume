@@ -11,7 +11,9 @@
     <script type="text/javascript" src="js/background.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            window.keywordbg = new $.keywordbg();
+            window.keywordbg = new $.keywordbg({
+                keywords : ['CSS3','HTML5','javascript','Node.js','JAVA','YUI','Linux','velocity']
+            });
             window.keywordbg.init();
         });
     </script>
@@ -31,6 +33,7 @@
         </nav>
         
     </div>
+    
     <div class="main-box">
         <div class="content-box">
             <section id="sec-box-1" class="section-box">
@@ -88,7 +91,7 @@
                         <dd>
                             <h4>工作职责</h4>
                             <ul>
-                                <li>支持<a href="http://www.aliexpress.com">速卖通</a>网站的日常维护和新功能开发。</li>
+                                <li>支持<a href="http://www.aliexpress.com">速卖通(www.aliexpress.com)</a>网站的日常维护和新功能开发。</li>
                                 <li>主要维护搜索页面和多语言网站。另外根据资源情况开发其余页面的项目。</li>
                                 <li>也支持过手机站<a href="http://m.aliexpress.com">m.aliexpress.com</a>的开发。</li>
                             </ul>
@@ -103,7 +106,7 @@
                         <dd>
                             <h4>工作职责</h4>
                             <ul class="normal-list">
-                                <li><a href="http://nianw.com">念网</a>的功能开发，以及网站前端架构的设计。</li>
+                                <li><a href="http://nianw.com">念网(nianw.com)</a>的功能开发，以及网站前端架构的设计。</li>
                                 <li>对编辑们进行html的基础培训，让他们自己可以修改简单的专题页面。</li>
                             </ul>
                         </dd>
@@ -154,6 +157,7 @@
             </section>
             <section id="sec-box-5" class="section-box">
                 <h3 class="section-title">小玩意</h3>
+                <p>一年前做的小玩意，到杭州以后，没时间开发这些小玩意了。</p>
                 <div class="section-content clearfix">
                     <ul class="p_list">
                         <li><a href="http://www.itbeihe.com/mydesktop/index.html">JavaScript模拟桌面</a></li>
@@ -163,8 +167,10 @@
                 
                 </div>
             </section>
+            <section class="occupied">
+            </section>
         </div>
     </div>
-    <script type="text/javascript" src="./"></script>
+    
 </body>
 </html>
