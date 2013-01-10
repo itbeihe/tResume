@@ -5,8 +5,6 @@
 */
 
 (function($) {
-
-
     var fontDiv = null;
     
     var getWidthHeight = function(keyObj){
@@ -49,6 +47,7 @@
             zSpeedLevel : 3,
             minFontSize:40,
             maxFontSize:60,
+            speed:3,
             fontFamily:'impact'
         };
         this.config = $.extend({}, this.config, customConfig);
@@ -62,6 +61,7 @@
             self.canvasObj = document.getElementById(self.config.canvasId);
             self.canvasObj.width = $(window).width() ;
             self.canvasObj.height = $(window).height();
+            
             //console.log(self.canvasObj.width);
             //console.log(self.canvasObj.height);
             //try{
@@ -69,14 +69,17 @@
                 self.context.save();
                 //console.log(self.context);
                 self.keyObjs = self.buildKeyObjs();
-                window.setInterval(function(){
-                    self.fillKeyObjs();
-                },50)
+                self.bindEvent();
+                //window.setInterval(function(){
+                //    self.fillKeyObjs(-1);
+                //},50)
                 
             //}catch(e){
             //    return;
             //}
-            
+        },
+        getBetterCoord:function(){
+        
         },
         buildKeyObjs : function(){
             var self = this;
@@ -106,7 +109,7 @@
                         var speed = parseInt(Math.random()*(zSpeedLevel-1) + 1);
                         keyObj.zSpeed = speed;
                     }
-                    keyObj.degree = Math.random()*36;
+                    keyObj.degree = Math.random()*6;
                     
                     keyObj.position = getCoord(keyObj,width,height);
                     keyObjs.push(keyObj);
@@ -115,29 +118,51 @@
             }
             return keyObjs;
         },
-        fillKeyObjs:function(){
+        fillKeyObjs:function(seq){
             //console.log('++');
             var self = this;
+            if(typeof seq == 'undefined'){
+                seq = 1;
+            }
+            seq = seq*self.config.speed;
             var context = self.context;
             context.clearRect(0,0,self.canvasObj.offsetWidth,self.canvasObj.offsetHeight);
-            for(var i=0,len=self.keyObjs.length;i<len;i++){
-                self.fillKeyObj(self.keyObjs[i]);
+            for(var i=0,len=self.keyObjs.length;i<len;i++){                
+                self.fillKeyObj(self.keyObjs[i],seq);
             }
             
         },
-        fillKeyObj:function(keyObj){
+        fillKeyObj:function(keyObj,seq){
             var context = this.context;
             context.font = '' + keyObj.fontSize + ' impact';
             context.fillStyle = keyObj.color;
             context.save();
             context.translate(keyObj.position['x'],keyObj.position['y'])
-            //keyObj.position['y'] = keyObj.position['y'] + keyObj.zSpeed*5;
-            keyObj.degree = keyObj.degree+keyObj.zSpeed;
+            keyObj.position['y'] = keyObj.position['y'] + keyObj.zSpeed*(seq);
+            keyObj.degree = keyObj.degree + keyObj.zSpeed*(seq);
             context.rotate(Math.PI/72*keyObj.degree);
             //context.fillText(keyObj.keyword,keyObj.position['x'],keyObj.position['y']);
             context.fillText(keyObj.keyword,-keyObj.position['width']/2,keyObj.position['height']/4);
             //context.fillText('0,0',0,0);
             context.restore();
+        },
+        bindEvent:function(){
+            var self = this;
+            var config = self.config;
+            var scrollTop = $(document).scrollTop();
+            self.fillKeyObjs();
+            
+            $(window).on('scroll',function(ev){
+                var nowScrollTop = $(document).scrollTop();
+                //console.log(nowScrollTop-scrollTop);
+                if(nowScrollTop-scrollTop>15){
+                    self.fillKeyObjs();
+                    scrollTop = nowScrollTop;
+                }else if(nowScrollTop-scrollTop<-15){
+                    self.fillKeyObjs(-1);
+                    scrollTop = nowScrollTop;
+                };
+            });
         }
     }
 })(jQuery);

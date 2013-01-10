@@ -8,6 +8,13 @@
        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/background.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            window.keywordbg = new $.keywordbg();
+            window.keywordbg.init();
+        });
+    </script>
 </head>
 <body>
     <canvas id="parallax-bg"></canvas>

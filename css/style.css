@@ -19,15 +19,13 @@ a:active{text-decoration:none;}
 .clearfix {*zoom:1;}
 
 /** 视差背景 **/
-#parallax-bg1{position:absolute;z-index:-1;}
-#parallax-bg2{position:absolute;z-index:-2;}
-#parallax-bg3{position:absolute;z-index:-3;}
+#parallax-bg{position:fixed;top:0;bottom:0;left:0;z-index:-1;}
 
 
 /** **/
 .main-box{margin:0 10%;width:70%;padding-left:10%}
 
-.slide-box{position:fixed;left:5%;top:0;bottom:0;border-right:3px solid #999;width:14%;text-align:right;padding:5% 0;min-weight:120px;background-color:#fafafa;}
+.slide-box{position:fixed;left:5%;top:0;bottom:0;border-right:3px solid #999;width:14%;text-align:right;padding:5% 0;min-weight:120px;}
 
 /** main-nav **/
 #main-nav{position:relative;}
@@ -36,7 +34,7 @@ a:active{text-decoration:none;}
 .nav-pointer{position:absolute;width:8px;height:8px;background:#fafafa;-webkit-transform: rotate(45deg);transform: rotate(45deg);right:-7px;top:7px;border-bottom:3px solid #999;border-left:3px solid #999;}
 /** section-box **/
 .section-title{padding-bottom:10px;}
-.section-box{margin:10px auto 0;border:1px solid #ccc;padding:10px;min-width:650px;background-color:#fff;}
+.section-box{margin:10px auto 0;border:1px solid #ccc;padding:10px;min-width:650px;}
 
 
 /** person info section **/
