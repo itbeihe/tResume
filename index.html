@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>唐琪的前端简历</title>
+    <title>唐琪的前端开发求职简历</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
     <!--[if IE]>
        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -11,10 +11,30 @@
     <script type="text/javascript" src="js/background.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            window.keywordbg = new $.keywordbg({
+            var keywordbg = new $.keywordbg({
                 keywords : ['CSS3','HTML5','javascript','Node.js','JAVA','YUI','Linux','velocity']
             });
-            window.keywordbg.init();
+            keywordbg.init();
+            
+            var goSection = function(num){
+                console.log(num);
+                $('.nav-pointer').css('top',(25*(num-1)+7)+'px');
+            };
+            
+            $('#main-nav-list').on('click',function(e){
+                var target = e.target;
+                if(target.nodeName.toLowerCase() == 'a'){
+                    var mathArr = /#sec-box-(\d)/g.exec(target.href);
+                    if(mathArr&&mathArr[1]){
+                        goSection(parseInt(mathArr[1]));
+                    }
+                }
+            });
+            
+            var hrefMathArr = /#sec-box-(\d)/g.exec(window.location.href);
+            if(hrefMathArr&&hrefMathArr[1]){
+                goSection(parseInt(hrefMathArr[1]));
+            }
         });
     </script>
 </head>
@@ -22,7 +42,7 @@
     <canvas id="parallax-bg"></canvas>
     <div class="slide-box">
         <nav class="main-nav" id="main-nav">
-            <ul class="main-nav-list">
+            <ul class="main-nav-list" id="main-nav-list">
                 <li><a href="#sec-box-1">个人信息</a></li>
                 <li><a href="#sec-box-2">技术特长</a></li>
                 <li class="current"><a href="#sec-box-3">工作经历</a></li>
@@ -57,6 +77,10 @@
                             <dd>489587104</dd>
                         </dl>
                         <dl class="my-info-row">
+                            <dt>工作经验:</dt>
+                            <dd>2年</dd>
+                        </dl>
+                        <dl class="my-info-row">
                             <dt>学历:</dt>
                             <dd>专科(11年毕业)</dd>
                         </dl>
@@ -70,8 +94,8 @@
                 <h3 class="section-title">技术特长</h3>
                 <div class="section-content clearfix">
                     <ol class="special-tech-list">
-                        <li>熟练掌握原生JavaScript及其衍生的ajax技术,熟练使用YUI,jquery等JS库,阅读过YUI常用方法的源码。</li>
-                        <li>熟练掌握(x)html，css。语义化和兼容性是基本功。对html5和css3有部分研究，并项目中有部分使用。</li>
+                        <li>熟练掌握原生JavaScript及ajax技术,熟练使用YUI,jquery,阅读过YUI常用方法的源码。</li>
+                        <li>熟练掌握(x)html，css。可兼容主流浏览器。对html5和css3有部分研究，并在部分项目中有使用。</li>
                         <li>熟悉前端页面性能优化。通过yslow，webpagetest等工具进行分析，给出网站性能的优化方案。</li>
                         <li>熟悉JAVAEE和mysql。了解php和nodeJS(写过简单的CRUD)。</li>
                         <li>熟悉Linux，可在linux下进行项目的开发。</li>
@@ -107,7 +131,7 @@
                             <h4>工作职责</h4>
                             <ul class="normal-list">
                                 <li><a href="http://nianw.com">念网(nianw.com)</a>的功能开发，以及网站前端架构的设计。</li>
-                                <li>对编辑们进行html的基础培训，让他们自己可以修改简单的专题页面。</li>
+                                <li>对编辑们进行html的基础培训，让编辑们可以自己修改简单的专题页面。</li>
                             </ul>
                         </dd>
                     </dl>
@@ -148,7 +172,7 @@
                         <dd>
                             <ul class="normal-list">
                                 <li>下单页面的功能开发。</li>
-                                <li>与后端开发确认下单部分前后端接口规范，并对数据进行处理。</li>
+                                <li>与后端开发确认项目前后端接口规范，并对后端返回数据进行处理。</li>
                                 <li>优化下单部分的用户体验。</li>
                             </ul>
                         </dd>
@@ -157,12 +181,11 @@
             </section>
             <section id="sec-box-5" class="section-box">
                 <h3 class="section-title">小玩意</h3>
-                <p>一年前做的小玩意，到杭州以后，没时间开发这些小玩意了。</p>
                 <div class="section-content clearfix">
                     <ul class="p_list">
-                        <li><a href="http://www.itbeihe.com/mydesktop/index.html">JavaScript模拟桌面</a></li>
-                        <li><a href="http://www.itbeihe.com/demo/beihe-js/RussiaRect/index.html">俄罗斯方块</a></li>
-                        <li><a href="http://www.itbeihe.com/demo/beihe-js/snake/snake.html">贪吃蛇</a></li>
+                        <li><a href="http://www.itbeihe.com/mydesktop/index.html" target="_blank">JavaScript模拟桌面</a></li>
+                        <li><a href="http://www.itbeihe.com/demo/beihe-js/RussiaRect/index.html"  target="_blank">俄罗斯方块</a></li>
+                        <li><a href="http://www.itbeihe.com/demo/beihe-js/snake/snake.html"  target="_blank">贪吃蛇</a></li>
                     </ul>
                 
                 </div>

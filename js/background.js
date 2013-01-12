@@ -1,7 +1,6 @@
 /*
-	keywordbg —— a keyword parallax background
-	
-	Dual licensed under MIT and GPL.
+	keywordbg —— 用于生成关键字背景
+    非常有想重写的欲望，空下时间就重写了，擦。
 */
 
 (function($) {
@@ -9,6 +8,8 @@
     var xarr = [];
     var yarr = [];
     var arrObj = {};
+    var testIndex = 0;
+    
     var getRandomFromArr = function(arr){
         var index = parseInt(Math.random()*arr.length);
         return arr[index];
@@ -25,7 +26,7 @@
     };
     
     
-    
+    //获取文案的宽度和高度，这里我错了，对canvas的api了解不熟悉，导致中心点计算有偏移
     var getWidthHeight = function(keyObj){
         if(!fontDiv){
             fontDiv = document.createElement('div');
@@ -44,6 +45,7 @@
         }
     };
     
+    // 从坐标数组获取随机坐标，废弃，不是最优方案
     var getRandomPointFromArr = function(arr,maxValue,span){
         if(arr.length == 0){
             var barr = buildArr(maxValue,span);
@@ -54,15 +56,16 @@
         return getRandomFromArr(arr);
     }
     
+    // 获取随机坐标，整个坐标获取方法有待改进
     var getCoord = function(keyObj,maxWidht,maxHeight){
         var WH = getWidthHeight(keyObj);
         var width = WH.width;
         var height = WH.height;
-        //var x = parseInt(Math.random()*(maxWidht-2*width)+width);
-        //var y = parseInt(Math.random()*(maxHeight-2*height)+height);
+        var x = parseInt(Math.random()*(maxWidht-2*width)+width);
+        var y = parseInt(Math.random()*(maxHeight-2*height)+height);
         
-        var x = getRandomPointFromArr(xarr,maxWidht,width);
-        var y = getRandomPointFromArr(yarr,maxHeight,height);
+        //var x = getRandomPointFromArr(xarr,maxWidht,width);
+        //var y = getRandomPointFromArr(yarr,maxHeight,height);
         return {
             x:x,
             y:y,
@@ -71,11 +74,12 @@
         }
     }
     
-    
+    // 插件对象
     $.keywordbg = function(customConfig) {
         this.config = {
             canvasId : 'parallax-bg',
-            keywords : ['CSS3','HTML5','javascript','Node.js','JAVA','YUI','Linux'],
+            //keywords : ['CSS3','HTML5','javascript','Node.js','JAVA'],
+            keywords : ['CSS3','HTML5','javascript','Node.js'],
             zSpeedLevel : 3,
             minFontSize:40,
             maxFontSize:60,
@@ -87,29 +91,29 @@
         this.canvasObj = null;
         this.keyObjs = [];
     }
+    //插件方法
     $.keywordbg.prototype = {
+        //初始化方法
         init:function(){
             var self = this;
             self.canvasObj = document.getElementById(self.config.canvasId);
             self.canvasObj.width = $(window).width() ;
             self.canvasObj.height = $(window).height();
             
-            //console.log(self.canvasObj.width);
-            //console.log(self.canvasObj.height);
-            try{
+            //try{
                 self.context = self.canvasObj.getContext('2d');
                 self.context.save();
-                //console.log(self.context);
                 self.keyObjs = self.buildKeyObjs();
                 self.bindEvent();
                 //window.setInterval(function(){
                 //    self.fillKeyObjs(-1);
                 //},50)
                 
-            }catch(e){
-                return false;
-            }
+            //}catch(e){
+            //    return false;
+            //}
         },
+        //用于生成关键字对象
         buildKeyObjs : function(){
             var self = this;
             var config = self.config;
@@ -144,31 +148,34 @@
                     var position = getCoord(keyObj,width,height);
                     
                     do{
-                        console.log('11');
                         position = getCoord(keyObj,width,height);
-                    }while(!self.checkPosition(position));
-                    
+                    }while(!self.checkPosition(position,keyObjs));
                     keyObj.position = position;
                     keyObjs.push(keyObj);
-                    
                 }
             }
             return keyObjs;
         },
-        checkPosition:function(position){
-            var self = this;
-            for(var i = 0,len=self.keyObjs.length;i<len;i++){
-                //console.log(self.keyObjs[i]['x'] == position['x']);
-                //console.log(self.keyObjs[i]['x'] == position['y']);
-                //console.log(self.keyObjs[i]['x'] == position['x'] && self.keyObjs[i]['y'] == position['y']);
-                if(self.keyObjs[i]['x'] == position['x'] && self.keyObjs[i]['y'] == position['y']){
+        //检查生成的坐标是否跟已存在的关键字对象重合。
+        checkPosition:function(position,keyObjs){
+            for(var i = 0,len = keyObjs.length;i<len;i++){
+                var comparePosition = keyObjs[i].position;    
+                var xGap =  Math.abs(position['x'] - comparePosition['x']);
+                var widthGap = parseInt((position['width'] + comparePosition['width'])/2);
+                var yGap = Math.abs(position['y'] - comparePosition['y'])
+                var heightGap = parseInt((position['height'] + comparePosition['height'])/2);
+                
+                if((xGap*xGap+xGap*yGap) < (widthGap*widthGap + heightGap*heightGap)){
+                    //console.log('gap1:'+ xGap+'_'+yGap);
+                    //console.log('gap2:'+ widthGap+'_'+heightGap);
+                    //console.log('false:'+ ++testIndex);
                     return false;
                 }
             }
             return true;
         },
+        // 填充所有关键字对象
         fillKeyObjs:function(seq){
-            //console.log('++');
             var self = this;
             if(typeof seq == 'undefined'){
                 seq = 1;
@@ -181,13 +188,14 @@
             }
             
         },
+        //填充关键字对象
         fillKeyObj:function(keyObj,seq){
             var context = this.context;
             context.font = '' + keyObj.fontSize + ' impact';
             context.fillStyle = keyObj.color;
             context.save();
             context.translate(keyObj.position['x'],keyObj.position['y'])
-            keyObj.position['y'] = keyObj.position['y'] + keyObj.zSpeed*(seq);
+            //keyObj.position['y'] = keyObj.position['y'] + keyObj.zSpeed*(seq);
             keyObj.degree = keyObj.degree + keyObj.zSpeed*(seq);
             context.rotate(Math.PI/72*keyObj.degree);
             //context.fillText(keyObj.keyword,keyObj.position['x'],keyObj.position['y']);
@@ -195,15 +203,15 @@
             //context.fillText('0,0',0,0);
             context.restore();
         },
+        //绑定滚动条事件
         bindEvent:function(){
             var self = this;
             var config = self.config;
             var scrollTop = $(document).scrollTop();
             self.fillKeyObjs();
-            
+
             $(window).on('scroll',function(ev){
                 var nowScrollTop = $(document).scrollTop();
-                //console.log(nowScrollTop-scrollTop);
                 if(nowScrollTop-scrollTop>15){
                     self.fillKeyObjs();
                     scrollTop = nowScrollTop;
