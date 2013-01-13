@@ -83,7 +83,7 @@
             zSpeedLevel : 3,
             minFontSize:40,
             maxFontSize:60,
-            speed:3,
+            speed:1,
             fontFamily:'impact'
         };
         this.config = $.extend({}, this.config, customConfig);
@@ -100,7 +100,7 @@
             self.canvasObj.width = $(window).width() ;
             self.canvasObj.height = $(window).height();
             
-            //try{
+            try{
                 self.context = self.canvasObj.getContext('2d');
                 self.context.save();
                 self.keyObjs = self.buildKeyObjs();
@@ -109,9 +109,9 @@
                 //    self.fillKeyObjs(-1);
                 //},50)
                 
-            //}catch(e){
+            }catch(e){
             //    return false;
-            //}
+            }
         },
         //用于生成关键字对象
         buildKeyObjs : function(){

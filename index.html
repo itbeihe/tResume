@@ -11,16 +11,10 @@
     <script type="text/javascript" src="js/background.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var keywordbg = new $.keywordbg({
-                keywords : ['CSS3','HTML5','javascript','Node.js','JAVA','YUI','Linux','velocity']
-            });
-            keywordbg.init();
-            
             var goSection = function(num){
-                console.log(num);
-                $('.nav-pointer').css('top',(25*(num-1)+7)+'px');
+                $('.nav-pointer').css('top',(25*(num-1))+'px');
             };
-            
+
             $('#main-nav-list').on('click',function(e){
                 var target = e.target;
                 if(target.nodeName.toLowerCase() == 'a'){
@@ -35,6 +29,15 @@
             if(hrefMathArr&&hrefMathArr[1]){
                 goSection(parseInt(hrefMathArr[1]));
             }
+        
+        
+            var keywordbg = new $.keywordbg({
+                keywords : ['CSS3','HTML5','javascript','Node.js','JAVA','YUI','Linux','velocity'],
+                speed: 2
+            });
+            keywordbg.init();
+            
+            
         });
     </script>
 </head>
@@ -45,7 +48,7 @@
             <ul class="main-nav-list" id="main-nav-list">
                 <li><a href="#sec-box-1">个人信息</a></li>
                 <li><a href="#sec-box-2">技术特长</a></li>
-                <li class="current"><a href="#sec-box-3">工作经历</a></li>
+                <li><a href="#sec-box-3">工作经历</a></li>
                 <li><a href="#sec-box-4">近期项目</a></li>
                 <li><a href="#sec-box-5">小玩意</a></li>
             </ul>
