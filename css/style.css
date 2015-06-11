@@ -73,8 +73,6 @@ a:active{text-decoration:none;}
 .work-job{display:inline-block;margin-left:50px;}
 .work-item dd{}
 
-.no-border{border-bottom:none;}
-
 
 /**  **/
 .normal-list{list-style:square inside;padding:5px 0 5px 5px;;}
@@ -88,3 +86,5 @@ a:active{text-decoration:none;}
 }
 /** **/
 .occupied{min-height:200px;}
+
+.no-border{border-bottom:none;}
