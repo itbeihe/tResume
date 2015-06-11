@@ -81,6 +81,10 @@ a:active{text-decoration:none;}
 
 
 .project-company{font-weight:bold;}
-
+.project-item{
+    padding-top: 10px;
+    padding-bottom: 4px;
+    border-bottom:1px dashed #ccc;
+}
 /** **/
 .occupied{min-height:200px;}
