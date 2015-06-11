@@ -11,6 +11,13 @@ a:visited{text-decoration:none;color:#06c;}
 a:hover{text-decoration:underline;color:#f60;}
 a:active{text-decoration:none;}
 
+/** 粒子样式 **/
+.p5 {padding:5px;}
+.p10 {padding:10px;}
+.pt0{ padding-top: 0px;}
+.pb5{ padding-bottom: 5px;}
+.pb10{ padding-bottom: 10px;}
+
 
 
 /** 清除浮动 **/
@@ -19,7 +26,7 @@ a:active{text-decoration:none;}
 .clearfix {*zoom:1;}
 
 /** 视差背景 **/
-#parallax-bg{position:fixed;top:0;bottom:0;left:0;z-index:0;_display:none;}
+#parallax-bg{position:fixed;top:0;bottom:0;z-index:0;_display:none;}
 
 
 /** **/
