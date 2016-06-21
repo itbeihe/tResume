@@ -88,3 +88,9 @@ a:active{text-decoration:none;}
 .occupied{min-height:200px;}
 
 .no-border{border-bottom:none;}
+
+.pdf{
+    position: absolute;
+    top:0px;
+    right:10px;
+}
